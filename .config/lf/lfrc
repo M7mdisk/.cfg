@@ -1,12 +1,16 @@
-# set hidden true
-map DD delete
-map . set hidden!
-set drawbox
+# Sane defaults
+set number
+set relativenumber
+
+# For image previews
 set previewer ctpv
 set cleaner ctpvclear
 &ctpv -s $id
 &ctpvquit $id
 
+# Visuals
+set icons
+set drawbox
 
 cmd open &{{
     case $(file --mime-type -Lb $f) in
@@ -15,22 +19,32 @@ cmd open &{{
     esac
 }}
 
-set number
-set relativenumber
 
-cmd fuzzy_select $lf -remote "send $id select \"$(fzf --layout reverse)\""
+cmd fzf_jump ${{
+    res="$(find . -maxdepth 2 | fzf --border --header='Jump to location')"
+    if [ -n "$res" ]; then
+        if [ -d "$res" ]; then
+            cmd="cd"
+        else
+            cmd="select"
+        fi
+        res="$(printf '%s' "$res" | sed 's/\\/\\\\/g;s/"/\\"/g')"
+        lf -remote "send $id $cmd \"$res\""
+    fi
+}}
+map f :fzf_jump
 
-map f fuzzy_select
 map R reload
 map r push :rename<space>
 
+map DD delete
 map <m-down> down
 map <m-up> up
 map <m-1> open
 map <m-3> updir
-map f $vim $(fzf)
 map zu unzip
 map zu extract
+map . set hidden!
 
 cmd extract ${{
     set -f
@@ -64,6 +78,5 @@ cmd zip ${{
 
 map gu cd "~/Digital Garden/Uni"
 map gc cd "~/.config"
+map gd cd "/mnt/Data"
 map ga cd "~/Digital Garden/Archive"
-map ga cd "~/Digital Garden/Archive"
-map gs cd "~/suckless"

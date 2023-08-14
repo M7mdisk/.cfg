@@ -28,10 +28,22 @@ call plug#end()
 " Colorscheme
 colorscheme onedark
 
+function! OpenFile(filename)
+    " Check if there are any unsaved changes in the current buffer
+    if &modified 
+        " Open the specified file in a new tab
+        execute 'tabnew' fnameescape(a:filename)
+    else
+        " Replace the content of the current buffer with the specified file
+        execute 'edit' fnameescape(a:filename)
+    endif
+endfunction
+
+
 " Custom commands
-command Vimrc  tabe ~/.config/nvim/init.vim
-command Zshrc  tabe ~/.config/zsh/.zshrc
-command TmuxConf  tabe ~/.config/tmux/tmux.conf
+command Vimrc  call OpenFile('~/.config/nvim/init.vim')
+command Zshrc  call OpenFile('~/.config/zsh/.zshrc')
+command TmuxConf  call OpenFile('~/.config/tmux/tmux.conf')
 command Reload so ~/.config/nvim/init.vim
 
 set ignorecase
@@ -75,3 +87,11 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <leader>aa za
 
+autocmd filetype python nnoremap <F4> :w <bar> exec '!python '.shellescape('%')<CR>
+autocmd filetype c nnoremap <F4> :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r')<CR>
+autocmd filetype cpp nnoremap <F4> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r')<CR>
+autocmd filetype python nnoremap <F5> :w <bar> exec '!python '.shellescape('%')<CR>
+" autocmd filetype c nnoremap <F5> :w <bar> exec '!gcc '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
+autocmd filetype c nnoremap <F5> :w <bar> exec \"'!gcc '.shellescape('%').' -o '.shellescape('%:r').'\" \| :term ./'%:r' \| startinsert<CR>
+
+autocmd filetype cpp nnoremap <F5> :w <bar> exec '!g++ '.shellescape('%').' -o '.shellescape('%:r').' && ./'.shellescape('%:r')<CR>
