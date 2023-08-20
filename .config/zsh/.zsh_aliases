@@ -1,3 +1,7 @@
+# Common typos
+alias "cd.."="cd .."
+alias sl=ls
+
 alias v="nvim"
 alias vim="nvim"
 
@@ -17,10 +21,15 @@ alias t="tmux -u"
 alias tls="tmux list-sessions"
 alias ta="tmux -u attach"
 
-alias i="sudo bnf install"
+alias i="sudo dnf install"
+alias u="sudo dnf upgrade"
+
 alias music="mpv --no-video"
 # alias bgg="feh --bg-fill '$(find ~/Wallpapers -type f | shuf -n 1)'"
-alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias cfg="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias open="xdg-open"
 alias ls="exa --icons"
 alias du="dust"
+alias wifi="nmcli dev wifi"
+alias less="less -i"
+
