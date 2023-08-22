@@ -32,6 +32,7 @@ cmd fzf_jump ${{
         lf -remote "send $id $cmd \"$res\""
     fi
 }}
+
 map f :fzf_jump
 
 map R reload

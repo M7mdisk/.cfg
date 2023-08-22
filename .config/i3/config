@@ -197,10 +197,10 @@ client.background       #FFFFFF
 # MY STUFF
 
 # Useful remaps, touchpad configuration
-exec sh $HOME/.config/i3/scripts/input.sh
+exec_always sh $HOME/.config/i3/scripts/input.sh
 
 # Use polybar instead of default
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id $HOME/.config/polybar/launch.sh
 
 #Set bg
 exec --no-startup-id feh --bg-scale $HOME/Pictures/Wallpapers/wp.jpg
@@ -268,3 +268,11 @@ for_window [title="Picture-in-Picture"] sticky enable
 
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
+
+
+# Scratchpad
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
