@@ -1,4 +1,9 @@
+# Common typos
+alias "cd.."="cd .."
+alias sl=ls
+
 alias v="nvim"
+alias vim="nvim"
 
 alias ls="ls --color=auto"
 alias l="ls"
@@ -16,14 +21,16 @@ alias t="tmux -u"
 alias tls="tmux list-sessions"
 alias ta="tmux -u attach"
 
-# WSL Stuff
-alias c="cd /mnt/c"
-alias d="cd /mnt/d"
+alias i="sudo dnf install"
+alias u="sudo dnf upgrade"
 
-alias i="sudo xbps-install -S"
-alias r="sudo xbps-remove"
-alias q="sudo xbps-query -Rs"
-alias u="sudo xbps-install -u; sudo xbps-install -Su"
 alias music="mpv --no-video"
-alias bgg="feh --bg-fill '$(find ~/Wallpapers -type f | shuf -n 1)'"
-alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+# alias bgg="feh --bg-fill '$(find ~/Wallpapers -type f | shuf -n 1)'"
+alias cfg="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
+alias open="xdg-open"
+alias ls="exa --icons"
+alias du="dust"
+alias wifi="nmcli dev wifi"
+alias less="less -i"
+alias python=python3
+
