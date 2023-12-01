@@ -21,16 +21,20 @@ alias t="tmux -u"
 alias tls="tmux list-sessions"
 alias ta="tmux -u attach"
 
-alias i="sudo dnf install"
-alias u="sudo dnf upgrade"
+aliasifexists() {
+    if command -v $2 &> /dev/null; then
+        alias $1="$3"
+    fi
+}
+
+aliasifexists ls exa "exa --icons"
+aliasifexists cat batcat batcat
+aliasifexists du dust dust
 
 alias music="mpv --no-video"
-# alias bgg="feh --bg-fill '$(find ~/Wallpapers -type f | shuf -n 1)'"
-alias cfg="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 alias open="xdg-open"
-alias ls="exa --icons"
-alias du="dust"
 alias wifi="nmcli dev wifi"
 alias less="less -i"
 alias python=python3
 
+alias cfg="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
