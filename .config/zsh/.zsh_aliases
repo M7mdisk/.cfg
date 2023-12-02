@@ -28,8 +28,8 @@ aliasifexists() {
 }
 
 aliasifexists ls exa "exa --icons"
-aliasifexists cat batcat batcat
 aliasifexists du dust dust
+aliasifexists bat batcat "batcat -p"
 
 alias music="mpv --no-video"
 alias open="xdg-open"

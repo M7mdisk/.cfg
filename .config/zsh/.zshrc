@@ -4,6 +4,7 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 setopt histignorealldups sharehistory
+setopt HIST_IGNORE_SPACE
 
 # Custom commands
 function tkdir(){
